@@ -69,6 +69,7 @@ public class mainScreen extends AppCompatActivity {
     static int sevenSevenFiveId = 0;
     static int hatchOffGroundId = 0;
     static int preloadSpinnerId = 0;
+    static int narrowId = 0;
     String currentStringSpinner = "";
     String wheelTypeString = "";
     String shiftingGearBoxString = "";
@@ -246,7 +247,6 @@ public class mainScreen extends AppCompatActivity {
 
         intakeTypeBox = (EditText) findViewById(R.id.intakeTypeInput);
         weightBox = (EditText) findViewById(R.id.weightInput);
-        narrowWideSquareBox = (EditText) findViewById(R.id.narrowWideSquareInput);
         notesBox = (EditText) findViewById(R.id.notes);
         nameBox = (EditText) findViewById(R.id.teamName);
         teamNumberCheck = (TextView) findViewById(R.id.teamNumberCheck);
@@ -256,7 +256,13 @@ public class mainScreen extends AppCompatActivity {
 
 
         //set spinner entries
+//narrowWideSquareSpinner
 
+        final String[] narrowWide = new String[]{"Narrow", "Wide", "Square"};
+        final Spinner narrowWideSquareSpinner = (Spinner) findViewById(R.id.narrowWideSquareSpinner);
+
+        final ArrayAdapter<String> adapterNarrow = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, narrowWide);
+        narrowWideSquareSpinner.setAdapter(adapterNarrow);
 
         final String[] driveTrain = new String[]{"Tank", "Swerve", "Slide", "Mechanum", "Other"};
         final Spinner driveTrainSpinner = (Spinner) findViewById(R.id.driveTrain);
@@ -306,7 +312,6 @@ public class mainScreen extends AppCompatActivity {
         System.out.println("Done Setting ID's");
         intakeTypeBox.setText(intakeType);
         weightBox.setText(weight);
-        narrowWideSquareBox.setText(narrowWideSquare);
         notesBox.setText(notes);
         nameBox.setText(name);
         //Make prompts link to their pages
@@ -327,6 +332,21 @@ public class mainScreen extends AppCompatActivity {
                 shiftingGearBoxString = shiftingGearBoxSpinner.getSelectedItem().toString();
                 shiftingGearBoxId = i;
                 System.out.println("Shifting Gearbox Selection: " + adapter2.getItem(i));
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        ((Spinner) findViewById(R.id.narrowWideSquareSpinner)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                narrowWideSquare = narrowWideSquareSpinner.getSelectedItem().toString();
+                narrowId = i;
 
             }
 
@@ -379,7 +399,6 @@ public class mainScreen extends AppCompatActivity {
                     name = nameBox.getText().toString();
                     intakeType = intakeTypeBox.getText().toString();
                     weight = weightBox.getText().toString();
-                    narrowWideSquare = narrowWideSquareBox.getText().toString();
                     notes = notesBox.getText().toString();
 
                     // Go to fill in page
@@ -407,7 +426,6 @@ public class mainScreen extends AppCompatActivity {
                     name = nameBox.getText().toString();
                     intakeType = intakeTypeBox.getText().toString();
                     weight = weightBox.getText().toString();
-                    narrowWideSquare = narrowWideSquareBox.getText().toString();
                     notes = notesBox.getText().toString();
                     sevenSevenFiveId = i;
 
@@ -437,7 +455,6 @@ public class mainScreen extends AppCompatActivity {
                     name = nameBox.getText().toString();
                     intakeType = intakeTypeBox.getText().toString();
                     weight = weightBox.getText().toString();
-                    narrowWideSquare = narrowWideSquareBox.getText().toString();
                     notes = notesBox.getText().toString();
                     goWheelTypeOtherPrompt();
 
@@ -447,7 +464,7 @@ public class mainScreen extends AppCompatActivity {
                     name = nameBox.getText().toString();
                     intakeType = intakeTypeBox.getText().toString();
                     weight = weightBox.getText().toString();
-                    narrowWideSquare = narrowWideSquareBox.getText().toString();
+
                     notes = notesBox.getText().toString();
                     goWheelTypeMixedPrompt();
 

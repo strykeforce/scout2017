@@ -28,17 +28,17 @@
         android:id="@+id/numberSearchBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/numberQ"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="188dp"
         android:layout_marginLeft="188dp"
         android:layout_marginTop="204dp"
-        android:hint=""
         android:ems="10"
+        android:hint=""
         android:inputType="number"
-        android:text=""
-        android:layout_below="@+id/numberQ"/>
+        android:text="" />
 
     <ListView
         android:id="@+id/teamList"
